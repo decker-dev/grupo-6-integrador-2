@@ -10,7 +10,7 @@ import org.example.util.DictionaryUtil;
 public class App {
 
     public static void main(String[] args) {
-        System.out.println("==== PRUEBA DE LAS TABLAS DE VERDAD ====\n");
+        System.out.println("==== PRUEBA DE LsAS TABLAS DE VERDAD ====\n");
 
         probarTDA(new UnaryBinaryLogicTruthTable(), "UnaryBinaryLogicTruthTable");
         probarTDA(new BinaryBinaryLogicTruthTable(), "BinaryBinaryLogicTruthTable");
