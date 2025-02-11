@@ -1,6 +1,8 @@
 package org.example.util;
 
+import org.example.model.Set;
 import org.example.model.Stack;
+import org.example.model.StaticSet;
 import org.example.model.StaticStack;
 
 public class StackUtil {
@@ -59,6 +61,31 @@ public class StackUtil {
         }
 
         return aux3.getTop();
+    }
+
+    public static Set commonElementsInStacks(Stack s1, Stack s2) {
+        Set set1 = stackToSet(s1);
+        Set set2 = stackToSet(s2);
+
+        return SetUtil.intersection(set1, set2);
+    }
+    public static Set stackToSet(Stack s) {
+        Set result = new StaticSet();
+        Stack temp = new StaticStack();
+
+        while (!s.isEmpty()) {
+            int value = s.getTop();
+            result.add(value);
+            temp.add(value);
+            s.remove();
+        }
+
+        while (!temp.isEmpty()) {
+            s.add(temp.getTop());
+            temp.remove();
+        }
+
+        return result;
     }
 
 }

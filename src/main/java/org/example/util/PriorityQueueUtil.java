@@ -1,7 +1,9 @@
 package org.example.util;
 
 import org.example.model.PriorityQueue;
+import org.example.model.Set;
 import org.example.model.StaticPriorityQueue;
+import org.example.model.StaticSet;
 
 public class PriorityQueueUtil {
 
@@ -21,6 +23,28 @@ public class PriorityQueueUtil {
         }
 
         return aux;
+    }
+    public static boolean allPrioritiesAreValues(PriorityQueue q) {
+        Set priorities = new StaticSet();
+        Set values = new StaticSet();
+
+        PriorityQueue temp = new StaticPriorityQueue();
+
+        while (!q.isEmpty()) {
+            int value = q.getFirst();
+            int priority = q.getPriority();
+            values.add(value);
+            priorities.add(priority);
+            temp.add(value, priority);
+            q.remove();
+        }
+
+        while (!temp.isEmpty()) {
+            q.add(temp.getFirst(), temp.getPriority());
+            temp.remove();
+        }
+
+        return SetUtil.subseteq(priorities, values);
     }
 
 

@@ -2,10 +2,9 @@ package org.example;
 
 import org.example.model.*;
 import org.example.model.Set;
-import org.example.util.LogicTruthTableUtil;
+import org.example.util.*;
 import org.example.model.Dictionary;
 import org.example.model.StaticDictionary;
-import org.example.util.DictionaryUtil;
 
 public class App {
 
@@ -60,5 +59,100 @@ public class App {
         }
 
         System.out.println("=============================================\n");
+        System.out.println("EJERCICIO 4");
+
+        Set domain = new StaticSet();
+        domain.add(1);
+        domain.add(2);
+        domain.add(3);
+
+        Set codomain = new StaticSet();
+        codomain.add(4);
+        codomain.add(5);
+        codomain.add(6);
+
+        Set functionPairs = new StaticSet();
+        functionPairs.add(FunctionUtil.createPair(1, 4));
+        functionPairs.add(FunctionUtil.createPair(2, 5));
+        functionPairs.add(FunctionUtil.createPair(3, 6));
+
+        boolean isBijective = FunctionUtil.isBijective(domain, codomain, functionPairs);
+        System.out.println("¿Es biyectiva? " + isBijective);
+
+        Set singletonSet = new StaticSet();
+        singletonSet.add(10);
+
+        Set nonSingletonSet = new StaticSet();
+        nonSingletonSet.add(10);
+        nonSingletonSet.add(20);
+
+        Set emptySet = new StaticSet();
+
+        System.out.println("¿Es singletonSet un Singleton? " + SetUtil.isSingleton(singletonSet));
+        System.out.println("¿Es nonSingletonSet un Singleton? " + SetUtil.isSingleton(nonSingletonSet));
+        System.out.println("¿Es emptySet un Singleton? " + SetUtil.isSingleton(emptySet));
+
+
+        MultipleDictionary dict1 = new StaticMultipleDictionary();
+        dict1.add(1, 10);
+        dict1.add(1, 20);
+        dict1.add(2, 30);
+
+        MultipleDictionary dict2 = new StaticMultipleDictionary();
+        dict2.add(1, 20);
+        dict2.add(1, 10);
+        dict2.add(2, 30);
+
+        boolean sonIguales = DictionaryUtil.equals(dict1, dict2);
+        System.out.println("¿Son iguales los diccionarios?" + sonIguales);
+        
+
+        System.out.println("EJERCICIO 5");
+
+        Stack stack = new StaticStack();
+        Stack stack2 = new StaticStack();
+
+        stack.add(1);
+        stack.add(2);
+        stack.add(3);
+
+        stack2.add(2);
+        stack2.add(3);
+        stack2.add(4);
+
+        System.out.println("Elementos comunes en pilas: ");
+        Set common = StackUtil.commonElementsInStacks(stack, stack2);
+        SetUtil.printSet(common);
+
+        Queue queue = new StaticQueue();
+        Queue queue2 = new StaticQueue();
+
+        queue.add(10);
+        queue.add(20);
+        queue.add(30);
+
+        queue2.add(20);
+        queue2.add(30);
+        queue2.add(40);
+
+
+        System.out.println("Elementos comunes en colas: ");
+        Set commonQ = QueueUtil.commonElementsInQueues(queue, queue2);
+        SetUtil.printSet(commonQ);
+
+        PriorityQueue priorityQueue = new StaticPriorityQueue();
+
+        priorityQueue.add(5, 1);
+        priorityQueue.add(2, 2);
+        priorityQueue.add(1, 5);
+        priorityQueue.add(50, 1);
+
+        System.out.println("¿Todas las prioridades aparecen como valores? " + PriorityQueueUtil.allPrioritiesAreValues(priorityQueue));
+
+        priorityQueue.add(50, 99);
+
+        System.out.println("¿Todas las prioridades aparecen como valores? " + PriorityQueueUtil.allPrioritiesAreValues(priorityQueue));
+
+
     }
 }

@@ -174,5 +174,29 @@ public class SetUtil {
         }
         return result;
     }
+    public static void printSet(Set set) {
+
+        Set copy = SetUtil.copy(set);
+        while (!copy.isEmpty()) {
+            int element = copy.choose();
+            System.out.print(element + " ");
+            copy.remove(element);
+        }
+        System.out.println();
+    }
+    public static boolean isSingleton(Set set) {
+        if (set.isEmpty()) {
+            return false;
+        }
+
+        int element = set.choose();
+        set.remove(element);
+
+        boolean isSingleton = set.isEmpty();
+
+        set.add(element);
+
+        return isSingleton;
+    }
 
 }
