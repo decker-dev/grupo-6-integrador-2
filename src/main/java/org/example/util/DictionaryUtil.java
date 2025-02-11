@@ -86,12 +86,14 @@ public class DictionaryUtil {
     private static Set copy(Set original) {
         return SetUtil.copy(original);
     }
+
     private static Set listToSet(List list) {
         Set set = new StaticSet();
-        for (int value : list) {
-            set.add(value);
+        for (int i = 0; i < list.length(); i++) {
+            set.add(list.get(i));
         }
         return set;
     }
+
 
 }
