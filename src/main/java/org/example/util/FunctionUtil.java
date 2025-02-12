@@ -2,18 +2,13 @@ package org.example.util;
 
 import org.example.model.Set;
 import org.example.model.StaticSet;
+import org.example.model.StaticDictionary;
+import org.example.model.Dictionary;
+import org.example.model.Function;
+import org.example.model.MultipleDictionary;
+import org.example.model.StaticMultipleDictionary;
 
 public class FunctionUtil {
-
-    private static class Pair{
-        int x;
-        int y;
-
-        Pair(int x, int y){
-            this.x = x;
-            this.y = y;
-        }
-    }
 
     public static boolean isBijective(Set domain, Set codomain, Set functionPairs) {
         return isInjective(domain, codomain, functionPairs) &&
@@ -110,6 +105,45 @@ public class FunctionUtil {
         return x * 10000 + y;
     }
 
+    public static Dictionary map(Function f) {
+        Dictionary dic = new StaticDictionary();
+        Set domain = f.getKeys();
 
+        while (!domain.isEmpty()) {
+            int key = domain.choose();
+            dic.add(key, f.get(key));
+            domain.remove(key);
+        }
 
+        return dic;
+    }
+
+    /**
+     * Método mapToMultiple que convierte una función a un diccionario múltiple.
+     *
+     * Precondición: f no es nula y está definida para algún conjunto de claves.
+     * Postcondición: Se retorna un diccionario múltiple que contiene, para cada clave x del dominio de f,
+     *                el par (x, f(x)), de forma que cada clave queda asociada a un único valor (en un contenedor).
+     * Estrategia de implementación:
+     *   1. Se obtiene el conjunto de claves (dominio) de la función f.
+     *   2. Se recorre dicho conjunto; para cada clave se obtiene su imagen f(x) y se agrega
+     *      el par (x, f(x)) al diccionario múltiple resultante.
+     *   3. Se elimina cada clave del conjunto temporal para avanzar en el recorrido.
+     *
+     * @param f La función a convertir.
+     * @return Un diccionario múltiple con las asociaciones (x, f(x)).
+     */
+
+    public static MultipleDictionary mapToMultiple(Function f) {
+        MultipleDictionary mdic = new StaticMultipleDictionary();
+        Set domain = f.getKeys();
+
+        while (!domain.isEmpty()) {
+            int key = domain.choose();
+            mdic.add(key, f.get(key));
+            domain.remove(key);
+        }
+
+        return mdic;
+    }
 }
