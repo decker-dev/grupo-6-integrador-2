@@ -23,15 +23,22 @@ public class DictionaryUtil {
             return false;
         }
 
-        Set keysToCheck = SetUtil.copy(keys1);
+        Set keysToCheck = copy(keys1);
         while (!keysToCheck.isEmpty()) {
             int key = keysToCheck.choose();
             keysToCheck.remove(key);
 
-            List values1 = dict1.get(key);
-            List values2 = dict2.get(key);
+            List values1 =  dict1.get(key);
+            List values2 =  dict2.get(key);
 
-            if (!haveSameValues(values1, values2)) {
+            if (values1.length() != values2.length()) {
+                return false;
+            }
+
+            Set set1 = listToSet(values1);
+            Set set2 = listToSet(values2);
+
+            if (!haveSameValues(set1, set2)) {
                 return false;
             }
         }
