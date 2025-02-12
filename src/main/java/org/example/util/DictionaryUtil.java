@@ -16,7 +16,6 @@ public class DictionaryUtil {
         }
     }
     public static boolean equals(MultipleDictionary dict1, MultipleDictionary dict2) {
-        // Primero verificamos que tengan las mismas claves
         Set keys1 = dict1.getKeys();
         Set keys2 = dict2.getKeys();
 
@@ -24,27 +23,15 @@ public class DictionaryUtil {
             return false;
         }
 
-        // Para cada clave, verificamos que tengan los mismos valores
-        Set keysToCheck = copy(keys1);
+        Set keysToCheck = SetUtil.copy(keys1);
         while (!keysToCheck.isEmpty()) {
             int key = keysToCheck.choose();
             keysToCheck.remove(key);
 
-            // Obtenemos las listas de valores para la clave actual
-            List values1 =  dict1.get(key);
-            List values2 =  dict2.get(key);
+            List values1 = dict1.get(key);
+            List values2 = dict2.get(key);
 
-            // Si tienen diferente cantidad de valores, no son iguales
-            if (values1.length() != values2.length()) {
-                return false;
-            }
-
-            // Convertimos las listas a conjuntos para comparar sin importar el orden
-            Set set1 = listToSet(values1);
-            Set set2 = listToSet(values2);
-
-            // Verificamos que tengan los mismos valores
-            if (!haveSameValues(set1, set2)) {
+            if (!haveSameValues(values1, values2)) {
                 return false;
             }
         }
@@ -67,20 +54,15 @@ public class DictionaryUtil {
         return true;
     }
 
-    private static boolean haveSameValues(Set values1, Set values2) {
-        if (SetUtil.size(values1) != SetUtil.size(values2)) {
+    private static boolean haveSameValues(List values1, List values2) {
+        if (values1.length() != values2.length()) {
             return false;
         }
 
-        Set copyValues1 = SetUtil.copy(values1);
-        while (!copyValues1.isEmpty()) {
-            int value = copyValues1.choose();
-            if (!SetUtil.in(value, values2)) {
-                return false;
-            }
-            copyValues1.remove(value);
-        }
-        return true;
+        Set set1 = listToSet(values1);
+        Set set2 = listToSet(values2);
+
+        return SetUtil.equals(set1, set2);
     }
 
     private static Set copy(Set original) {

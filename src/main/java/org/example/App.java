@@ -94,18 +94,18 @@ public class App {
 
 
         MultipleDictionary dict1 = new StaticMultipleDictionary();
-        dict1.add(1, 10);
+        dict1.add(3, 10);
         dict1.add(1, 20);
         dict1.add(2, 30);
 
         MultipleDictionary dict2 = new StaticMultipleDictionary();
         dict2.add(1, 20);
-        dict2.add(1, 10);
+        dict2.add(3, 10);
         dict2.add(2, 30);
 
         boolean sonIguales = DictionaryUtil.equals(dict1, dict2);
         System.out.println("¿Son iguales los diccionarios?" + sonIguales);
-        
+
 
         System.out.println("EJERCICIO 5");
 
