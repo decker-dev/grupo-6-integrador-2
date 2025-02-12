@@ -42,9 +42,7 @@ public class FunctionUtil {
         return SetUtil.size(domainElements) == SetUtil.size(domain);
     }
 
-    /**
-     * Verifica si la función es inyectiva
-     */
+
     private static boolean isInjective(Set domain, Set codomain, Set functionPairs) {
         Set usedValues = new StaticSet();
         Set copyPairs = SetUtil.copy(functionPairs);
