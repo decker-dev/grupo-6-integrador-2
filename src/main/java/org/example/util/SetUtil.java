@@ -1,9 +1,6 @@
 package org.example.util;
 
-import org.example.model.Set;
-import org.example.model.SetOfSet;
-import org.example.model.StaticSet;
-import org.example.model.StaticSetOfSet;
+import org.example.model.*;
 
 public class SetUtil {
 
@@ -184,19 +181,20 @@ public class SetUtil {
         }
         System.out.println();
     }
-    public static boolean isSingleton(Set set) {
-        if (set.isEmpty()) {
-            return false;
-        }
-
-        int element = set.choose();
-        set.remove(element);
-
-        boolean isSingleton = set.isEmpty();
-
-        set.add(element);
-
-        return isSingleton;
+    /**
+     * Determina si un conjunto es un Singleton.
+     * Un conjunto es Singleton si contiene exactamente un elemento.
+     *
+     * Precondición: s no es nulo.
+     * Postcondición: Retorna true si s es un Singleton, false en caso contrario.
+     *
+     * @param s El conjunto a evaluar.
+     * @return true si s es un Singleton, false de lo contrario.
+     */
+    public static boolean isSingleton(Set s) {
+        return SetUtil.size(s) == 1;
     }
+
+
 
 }
