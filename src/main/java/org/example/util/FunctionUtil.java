@@ -10,16 +10,6 @@ import org.example.model.StaticMultipleDictionary;
 
 public class FunctionUtil {
 
-    private static class Pair{
-        int x;
-        int y;
-
-        Pair(int x, int y){
-            this.x = x;
-            this.y = y;
-        }
-    }
-
     public static boolean isBijective(Set domain, Set codomain, Set functionPairs) {
         return isInjective(domain, codomain, functionPairs) &&
                 isSurjective(domain, codomain, functionPairs) &&
